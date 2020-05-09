@@ -5,7 +5,8 @@
     </div>
     <div class="course-info-container">
       <div class="course-title-container">
-        <a href="#">{{course.name}}</a>
+        <!-- <a href="/course/1">{{course.name}}</a> -->
+        <router-link :to="{ name: 'Course', params: { id: course.id }}">{{course.name}}</router-link>
       </div>
       <div class="course-description-container">{{course.desc}}</div>
     </div>

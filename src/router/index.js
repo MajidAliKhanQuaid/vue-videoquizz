@@ -1,14 +1,17 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Welcome from "@/components/Welcome";
+import Welcome from "@/pages/Welcome";
 // import Qa from "@/components/Qa";
-import Practice from "@/components/Practice";
-import Courses from "@/components/Courses";
-import Quizz from "@/components/Quizz";
-import Certificates from "@/components/Certificates";
+import Practice from "@/pages/Practice";
+import Courses from "@/pages/Courses";
+import Course from "@/pages/Course";
+import CourseQuizz from "@/pages/CourseQuizz";
+import Quizz from "@/pages/Quizz";
+import Certificates from "@/pages/Certificates";
 
 Vue.use(Router);
 export default new Router({
+  mode: "history",
   routes: [
     // {
     //   path: "/",
@@ -23,10 +26,24 @@ export default new Router({
     //   }),
     // },
     // ,
-    { path: "/", component: Welcome },
-    { path: "/courses", component: Courses },
-    { path: "/quizz", component: Quizz },
-    { path: "/certificates", component: Certificates },
-    { path: "/practice", component: Practice },
+    { name: "Home", path: "/", component: Welcome },
+    {
+      name: "CourseQuizz",
+      path: "/course/:id/quizz",
+      component: CourseQuizz,
+    },
+    { name: "Course", path: "/course/:id", component: Course },
+    { name: "CourseList", path: "/courses", component: Courses },
+    { name: "QuizzList", path: "/quizz", component: Quizz },
+    { name: "CertificateList", path: "/certificates", component: Certificates },
+    { name: "Practice", path: "/practice", component: Practice },
+    {
+      path: "*",
+      component: Vue.component("NotFound", {
+        render() {
+          return <h1>404 ! Not Found</h1>;
+        },
+      }),
+    },
   ],
 });

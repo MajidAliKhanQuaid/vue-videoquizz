@@ -7,23 +7,20 @@
   </div>
 </template>
 <script>
-import CourseTemplate from "./CourseTemplate";
-import courses from "../data/courses.js";
+import CourseTemplate from "../components/CourseTemplate";
+import { mapState } from "vuex";
 export default {
   name: "Courses",
   data: function() {
-    return {
-      count: 5,
-      data: {
-        type: Object
-      },
-      courses: courses.map(x => {
-        return { ...x, id: 0 };
-      })
-    };
+    return {};
   },
   components: {
     CourseTemplate
+  },
+  computed: {
+    ...mapState({
+      courses: "courses"
+    })
   }
 };
 </script>
