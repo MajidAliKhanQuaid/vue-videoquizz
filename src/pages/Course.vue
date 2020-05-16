@@ -2,7 +2,7 @@
   <div class="course">
     <!-- <h1>This is course | {{$route.params.id}}</h1> -->
     <div class="course-title">
-      <h1>{{course.name}}</h1>
+      <h1>{{ course.name }}</h1>
     </div>
     <h1 v-if="showLoadingMessage">Video is Loading .. Wait</h1>
     <div class="course-video-container">
@@ -15,11 +15,13 @@
       ></youtube>
     </div>
     <div class="course-quizz-container" v-if="showQuizzButton">
-      <button class="btn-start-course" @click="btnStartQuizz_Click">Start Quizz</button>
+      <button class="btn-start-course" @click="btnStartQuizz_Click">
+        Start Quizz
+      </button>
     </div>
     <div class="course-description">
       <h3>Description</h3>
-      {{course.desc}}
+      {{ course.desc }}
     </div>
   </div>
 </template>
@@ -31,35 +33,29 @@ export default {
     return {
       showLoadingMessage: true,
       showQuizzButton: false,
-      course: Object
+      course: Object,
     };
   },
   mounted() {
     let courseId = this.$route.params.id;
     console.log(this.courses);
-    var course = this.courses.find(x => x && x.id == courseId);
+    var course = this.courses.find((x) => x && x.id == courseId);
     console.log("course Id is " + courseId);
     console.log(course);
     if (course) {
       this.course = course;
     }
-    console.log("CourseTemplate - Mounted Event");
-    // using the route parameter; we've to load a video
-    console.log(`Route Parameter is : ${this.$route.params.id}`);
-    // console.log(this.course.name);
-    // console.log(this.course.desc);
   },
   methods: {
     btnStartQuizz_Click() {
       this.$router.push({
         name: "CourseQuizz",
-        params: { id: this.course.id }
+        params: { id: this.course.id },
       });
     },
     ready(ev) {
       this.showLoadingMessage = false;
       this.player = ev.target;
-      console.log("video is ready");
     },
     playing() {
       // The player is playing a video.
@@ -71,22 +67,19 @@ export default {
       // If `playerVars.autoplay` is 1, `loadVideoById` will be called.
       // If `playerVars.autoplay` is 0, `cueVideoById` will be called.
       this.videoId = "another video id";
-      console.log("video is changing");
     },
     stop() {
       this.showQuizzButton = true;
       this.player.stopVideo();
-      console.log("video is stopping to play");
     },
     pause() {
       this.player.pauseVideo();
-      console.log("video is paused");
-    }
+    },
   },
   computed: {
     ...mapState({
-      courses: "courses"
-    })
+      courses: "courses",
+    }),
   },
   beforeRouteEnter(to, from, next) {
     // called before the route that renders this component is confirmed.
@@ -96,13 +89,13 @@ export default {
     if (isNaN(parseInt(to.params.id))) {
       next("/notfound");
     } else {
-      next(vm => {
+      next((vm) => {
         // access to component's instance using `vm` .
         // this is done because this navigation guard is called before the component is created.
         // clear your previously populated search results.
         // re-populate search results
 
-        var course = vm.courses.find(x => x && x.id == to.params.id);
+        var course = vm.courses.find((x) => x && x.id == to.params.id);
         if (course) {
           next();
         } else {
@@ -110,7 +103,7 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
 <style scoped>

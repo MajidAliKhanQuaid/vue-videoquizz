@@ -1,28 +1,32 @@
 <template>
   <div class="navbar-container">
     <div class="navbar-heading">
-      <router-link to="/" class="a-navbar-heading navbar-anchors">Fehm Ul Quran</router-link>
+      <router-link to="/" class="a-navbar-heading navbar-anchors"
+        >Fehm Ul Quran</router-link
+      >
     </div>
-    <div :class="{'navbar-pill' : true, 'selected' : $route.name == 'CourseList'}">
-      <router-link to="/courses" class="a-navbar-pill navbar-anchors">Courses</router-link>
+    <div
+      :class="{ 'navbar-pill': true, selected: $route.name == 'CourseList' }"
+    >
+      <router-link to="/courses" class="a-navbar-pill navbar-anchors"
+        >Courses</router-link
+      >
     </div>
-    <div :class="{'navbar-pill' : true, 'selected' : $route.name == 'QuizzList'}">
-      <router-link to="/quizz" class="a-navbar-pill navbar-anchors">Quizzes</router-link>
+    <div :class="{ 'navbar-pill': true, selected: $route.name == 'QuizzList' }">
+      <router-link to="/quizz" class="a-navbar-pill navbar-anchors"
+        >Quizzes</router-link
+      >
     </div>
-    <div :class="{'navbar-pill' : true, 'selected' : $route.name == 'CertificateList'}">
-      <router-link to="/certificates" class="a-navbar-pill navbar-anchors">Certificates</router-link>
-    </div>
-    <!-- <router-link to="/courses" class="a-navbar-pill navbar-anchors">
-      <div :class="$route.name == 'CourseList' ? 'navbar-pill selected' : 'navbar-pill'">Courses</div>
-    </router-link>
-    <router-link to="/quizz" class="a-navbar-pill navbar-anchors">
-      <div :class="$route.name == 'QuizzList' ? 'navbar-pill selected' : 'navbar-pill'">Quizzes</div>
-    </router-link>
-    <router-link to="/certificates" class="a-navbar-pill navbar-anchors">
-      <div
-        :class="$route.name == 'CertificateList' ? 'navbar-pill selected' : 'navbar-pill'"
-      >Certificates</div>
-    </router-link>-->
+    <!-- <div
+      :class="{
+        'navbar-pill': true,
+        selected: $route.name == 'CertificateList',
+      }"
+    >
+      <router-link to="/certificates" class="a-navbar-pill navbar-anchors"
+        >Certificates</router-link
+      >
+    </div> -->
   </div>
 </template>
 
@@ -32,22 +36,22 @@ import { mapState } from "vuex";
 export default {
   name: "Navbar",
   props: {
-    msg: String
+    msg: String,
   },
   methods: {
     increment() {
       this.$store.commit("increment");
       console.log(this.$store.state.count);
-    }
+    },
   },
   computed: {
     ...mapState({
-      count1: "count"
+      count1: "count",
     }),
     currentRouteName() {
       return this.$route.name;
-    }
-  }
+    },
+  },
 };
 </script>
 
