@@ -3,7 +3,16 @@
     <div class="navbar-heading">
       <router-link to="/" class="a-navbar-heading navbar-anchors">Fehm Ul Quran</router-link>
     </div>
-    <router-link to="/courses" class="a-navbar-pill navbar-anchors">
+    <div :class="{'navbar-pill' : true, 'selected' : $route.name == 'CourseList'}">
+      <router-link to="/courses" class="a-navbar-pill navbar-anchors">Courses</router-link>
+    </div>
+    <div :class="{'navbar-pill' : true, 'selected' : $route.name == 'QuizzList'}">
+      <router-link to="/quizz" class="a-navbar-pill navbar-anchors">Quizzes</router-link>
+    </div>
+    <div :class="{'navbar-pill' : true, 'selected' : $route.name == 'CertificateList'}">
+      <router-link to="/certificates" class="a-navbar-pill navbar-anchors">Certificates</router-link>
+    </div>
+    <!-- <router-link to="/courses" class="a-navbar-pill navbar-anchors">
       <div :class="$route.name == 'CourseList' ? 'navbar-pill selected' : 'navbar-pill'">Courses</div>
     </router-link>
     <router-link to="/quizz" class="a-navbar-pill navbar-anchors">
@@ -13,7 +22,7 @@
       <div
         :class="$route.name == 'CertificateList' ? 'navbar-pill selected' : 'navbar-pill'"
       >Certificates</div>
-    </router-link>
+    </router-link>-->
   </div>
 </template>
 
@@ -49,7 +58,8 @@ div.navbar-container {
   flex-flow: wrap;
   background-color: #b1bfd8;
   background-image: linear-gradient(315deg, #b1bfd8 0%, #6782b4 74%);
-  /* padding: 10px; */
+  padding: 20px;
+  border-radius: 20px;
 }
 
 div.navbar-heading {
@@ -62,7 +72,14 @@ div.navbar-heading a {
 }
 
 div.navbar-container div.navbar-pill {
-  min-width: 200px;
+  min-width: 150px;
+  padding-top: 15px;
+  margin: 0px 10px;
+}
+
+.navbar-pill a {
+  display: block;
+  height: 100%;
 }
 
 a.navbar-anchors {
@@ -70,13 +87,14 @@ a.navbar-anchors {
   text-decoration: none;
   font-size: 20px;
 }
-
-div.selected {
-  border-radius: 5%;
-  background: #cad3c8;
+.navbar-pill:hover {
+  background-color: rgb(96, 96, 96, 0.3);
+  border-style: outset;
+  border-width: 1px 0px;
+  border-color: transparent;
+  color: white;
 }
-
-div.selected a {
-  color: #7f5a83;
+.navbar-pill.selected {
+  background-color: #666;
 }
 </style>

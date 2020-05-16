@@ -28,11 +28,11 @@ export default {
   name: "App",
   data: function() {
     return {
-      videoId: "1naFgA71F3I",
+      videoId: "1naFgA71F3I"
     };
   },
   components: {
-    Navbar,
+    Navbar
     // AboutMe,
     // HelloWorld,
     // Qa,
@@ -61,8 +61,8 @@ export default {
     pause() {
       this.player.pauseVideo();
       console.log("video is paused");
-    },
-  },
+    }
+  }
 };
 </script>
 

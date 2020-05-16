@@ -1,7 +1,9 @@
 <template>
   <div class="course">
     <!-- <h1>This is course | {{$route.params.id}}</h1> -->
-    <h1>{{course.name}}</h1>
+    <div class="course-title">
+      <h1>{{course.name}}</h1>
+    </div>
     <h1 v-if="showLoadingMessage">Video is Loading .. Wait</h1>
     <div class="course-video-container">
       <youtube
@@ -14,6 +16,10 @@
     </div>
     <div class="course-quizz-container" v-if="showQuizzButton">
       <button class="btn-start-course" @click="btnStartQuizz_Click">Start Quizz</button>
+    </div>
+    <div class="course-description">
+      <h3>Description</h3>
+      {{course.desc}}
     </div>
   </div>
 </template>
@@ -134,5 +140,12 @@ div.course-video-container {
   background-color: #6796bf;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+.course-title {
+  text-align: center;
+}
+.course-description {
+  text-align: left;
+  padding-left: 100px;
 }
 </style>

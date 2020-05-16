@@ -13,6 +13,14 @@ const courses = [
           { v: "Fahad Ali", c: false },
         ],
       },
+      {
+        q: "What is your age ?",
+        a: [
+          { v: "20", c: true },
+          { v: "30", c: false },
+          { v: "40", c: false },
+        ],
+      },
     ],
   },
   { name: "Day 2", desc: "", videoId: "V2tUDKc4yoU" },

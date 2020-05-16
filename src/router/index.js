@@ -8,6 +8,7 @@ import Course from "@/pages/Course";
 import CourseQuizz from "@/pages/CourseQuizz";
 import Quizz from "@/pages/Quizz";
 import Certificates from "@/pages/Certificates";
+import AnswerSheet from "@/pages/AnswerSheet";
 
 Vue.use(Router);
 export default new Router({
@@ -32,6 +33,7 @@ export default new Router({
       path: "/course/:id/quizz",
       component: CourseQuizz,
     },
+    { name: "AnswerSheet", path: "/answersheet", component: AnswerSheet },
     { name: "Course", path: "/course/:id", component: Course },
     { name: "CourseList", path: "/courses", component: Courses },
     { name: "QuizzList", path: "/quizz", component: Quizz },

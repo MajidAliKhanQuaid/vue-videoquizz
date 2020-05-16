@@ -8,6 +8,7 @@ const store = new Vuex.Store({
     courses: coursesData.map((obj, index) => {
       return { ...obj, id: index };
     }),
+    questionAnswered: [],
     selectedCourse: 0,
     selectedQuestion: 0,
     answers: [],
@@ -16,6 +17,14 @@ const store = new Vuex.Store({
     increment(state) {
       console.log("Calling Store");
       state.count++;
+    },
+    updateQuestionAnswered(state, qa) {
+      // mutate state
+      state.questionAnswered.push(qa);
+    },
+    incrementQuestion(state) {
+      // mutate state
+      state.selectedQuestion++;
     },
     updateAnswer(state, answer) {
       // mutate state

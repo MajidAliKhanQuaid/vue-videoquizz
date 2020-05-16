@@ -1,11 +1,14 @@
 <template>
-  <div class="qa-container" v-if="'questions' in course">
+  <div
+    class="qa-container"
+    v-if="'questions' in course && course.questions.length > selectedQuestion"
+  >
     <!-- <h1>{{$route.params.id}}</h1> -->
-    <div class="question-container">{{this.course.questions[0].q}}</div>
+    <div class="question-container">{{this.course.questions[selectedQuestion].q}}</div>
     <div class="answer-option-container">
       <div
         class="answer-container"
-        v-for="(answer, index) in this.course.questions[0].a"
+        v-for="(answer, index) in this.course.questions[selectedQuestion].a"
         :key="index"
       >
         <input type="radio" name="answers" :value="answer.v" @change="answer_Click" />
@@ -64,13 +67,24 @@ export default {
   },
   methods: {
     answer_Click(ev) {
-      let answer = this.course.questions[0].a.find(x => x.v == ev.target.value);
-      if (answer && answer.c == true) {
-        this.$router.push({ name: "Home" });
-        console.log("Drust Jawab");
-        return;
+      // take existing answers
+      let options = this.course.questions[this.selectedQuestion].a;
+      // map them and add a new field to identify; which option was selected
+      let mappedOptions = options.map(x => ({
+        ...x,
+        enteredAnswer: ev.target.value == x.v
+      }));
+      // update existing, answer and update store-state for `answeredQuestions`
+      this.course.questions[this.selectedQuestion].a = mappedOptions;
+      let question = this.course.questions[this.selectedQuestion];
+      this.$store.commit("updateQuestionAnswered", question);
+      console.log("State before : " + this.selectedQuestion);
+      this.$store.commit("incrementQuestion");
+      console.log("State after : " + this.selectedQuestion);
+      if (this.selectedQuestion >= this.course.questions.length) {
+        // here route it to some other page
+        this.$router.push({ name: "AnswerSheet" });
       }
-      console.log("Ghalat Jawab");
     }
   }
 };
